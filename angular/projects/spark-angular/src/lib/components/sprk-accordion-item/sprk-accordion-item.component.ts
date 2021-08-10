@@ -24,8 +24,9 @@ import { toggleAnimations } from '../sprk-toggle/sprk-toggle-animations';
             *ngIf="leadingIcon"
             [iconName]="leadingIcon"
             [additionalClasses]="getLeadingIconClasses()"
-          ></sprk-icon>
-          {{ heading || title }}
+          >
+            <ng-content select="[sprkAccordionHeading]"></ng-content>
+          </sprk-icon>
         </span>
 
         <sprk-icon
@@ -44,19 +45,8 @@ import { toggleAnimations } from '../sprk-toggle/sprk-toggle-animations';
   animations: [toggleAnimations.toggleContent],
 })
 export class SprkAccordionItemComponent implements OnInit {
-  // TODO - Remove as part of Issue 3597
-  /**
-   * Deprecated: use `heading` instead. The value supplied will be
-   * rendered inside the heading area of the Accordion Item.
-   */
   @Input()
-  title: string;
-  /**
-   * The value supplied will be rendered inside the heading area of the
-   * Accordion Item.
-   */
-  @Input()
-  heading: string;
+  cardSummary?: string;
   /**
    * The value supplied will be assigned to the `data-analytics` attribute
    * on the component. Intended for an outside library to capture data.
